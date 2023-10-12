@@ -5,9 +5,6 @@ interface TestProps {
 }
 
 const TestType: any = ({testing}: TestProps) => {
-  console.log({
-    testing
-  })
   return (
     <div>hello typescript update</div>
   )

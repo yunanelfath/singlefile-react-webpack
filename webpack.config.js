@@ -1,9 +1,10 @@
 //webpack.config.js
 //https://dev.to/deadwing7x/setup-a-react-app-using-webpack-babel-and-typescript-5927
 const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: process.env.NODE_ENV || "development",
   devtool: "inline-source-map",
   entry: {
     main: "./src/index.js",
@@ -17,7 +18,7 @@ module.exports = {
   },
   module: {
     rules: [
-      { 
+      {
         test: /\.(js|jsx)?$/,
         exclude: /node_modules/,
         loader: "babel-loader"
@@ -28,5 +29,10 @@ module.exports = {
         use: ["ts-loader"],
       },
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+        template: path.join(__dirname, "public/index.html"),
+    }),
+  ],
 };

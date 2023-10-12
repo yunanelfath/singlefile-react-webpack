@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<title>IFrame React App</title>
+</head>
+
+<body>
+
+  <button onclick="sendMessage()">Send Message</button>
+
+  <script>
+		function sendMessage() {
+			var iframeWin = document.getElementById("cross_domain_page").contentWindow
+			iframeWin.postMessage("hello message", "http://localhost:8080")
+			return false;
+		}
+  </script>
+	<iframe src="http://localhost:8080/" height="500" id="cross_domain_page"></iframe>
+</body>
+
+</html>
