@@ -5,20 +5,21 @@ module.exports = {
   mode: "development",
   devtool: "inline-source-map",
   entry: {
-    main: "./src/app.ts",
+    main: "./src/index.js",
   },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: "app-bundle.js" // <--- Will be compiled to this single file
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"],
+    extensions: [".js", ".jsx"],
   },
   module: {
     rules: [
       { 
-        test: /\.tsx?$/,
-        loader: "ts-loader"
+        test: /\.(js|jsx)?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
       }
     ]
   }
