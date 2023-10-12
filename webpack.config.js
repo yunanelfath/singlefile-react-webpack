@@ -1,4 +1,5 @@
 //webpack.config.js
+//https://dev.to/deadwing7x/setup-a-react-app-using-webpack-babel-and-typescript-5927
 const path = require('path');
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
     filename: "app-bundle.js" // <--- Will be compiled to this single file
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   module: {
     rules: [
@@ -20,7 +21,12 @@ module.exports = {
         test: /\.(js|jsx)?$/,
         exclude: /node_modules/,
         loader: "babel-loader"
-      }
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: ["ts-loader"],
+      },
     ]
   }
 };
