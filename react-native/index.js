@@ -1,8 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import { App } from "./src/App";
+import {AppRegistry, Platform} from 'react-native';
 
-const root = ReactDOM.createRoot(document.getElementById('root') );
-root.render(
-  <App num={123}/>
-);
+const Root = () => {
+  return (
+    <App />
+  )
+}
+
+AppRegistry.registerComponent('App', () => Root);
+if (Platform.OS === 'web') {
+  AppRegistry.runApplication('App', {
+    rootTag: document.getElementById('root')
+  });
+}
