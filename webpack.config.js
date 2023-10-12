@@ -7,7 +7,7 @@ module.exports = {
   mode: process.env.NODE_ENV || "development",
   devtool: "inline-source-map",
   entry: {
-    main: "./src/index.js",
+    main: process.env.NODE_APP === 'native' ? "./react-native/index.js" : "./src/index.js",
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -15,6 +15,9 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      'react-native$': 'react-native-web',
+    }
   },
   module: {
     rules: [
@@ -27,6 +30,16 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: ["ts-loader"],
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i, 
+        use: {
+          loader: 'file-loader',
+          options: {
+              name: '[path][name].[ext]',
+              outputPath: 'assets/images'
+          }
+        }
       },
     ]
   },
